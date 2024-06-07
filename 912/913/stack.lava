@@ -1,0 +1,80 @@
+package Lab3Forstd;
+
+import java.util.Scanner;
+
+class StackA
+{
+    public int maxSize = 5; // size of stack array
+    public String[] stackArray;
+    public int top; // top of stack
+    //--------------------------------------------------------------
+
+    // Constructor
+    public StackA(int s) {
+        maxSize = s;
+        stackArray = new String[maxSize]; // Create the array
+        top = -1; // No items yet
+    }
+    //--------------------------------------------------------------
+
+    // Push onto the stack
+    public void push(String j) {
+        if (isFull()) {
+            System.out.println("Stack is full. Cannot push.");
+            return; // Exit the method if full
+        }
+        top++;
+        stackArray[top] = j;
+    }
+    //--------------------------------------------------------------
+
+    // Pop from the stack
+    public String pop() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty. Cannot pop.");
+            return null; // Indicate an error
+        }
+        String temp = stackArray[top];
+        top--;
+        return temp;
+    }
+    //--------------------------------------------------------------
+
+    // Check if empty
+    public boolean isEmpty() {
+        return (top == -1);
+    }
+    //--------------------------------------------------------------
+
+    // Check if full
+    public boolean isFull() {
+        return (top == maxSize - 1);
+    }
+} // end class StackA
+
+
+ class Lab3ForStd {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        StackA theStack = new StackA(5);
+
+        System.out.println("Enter 5 อักขระ:  ");
+        for (int i = 0; i < 5; i++) {
+            String input = scanner.next();
+            if (!theStack.isFull()) { // ตรวจสอบว่า stack เต็มหรือไม่
+                theStack.push(input);
+            }
+        }
+        System.out.println("--------------------------");
+        System.out.println("กลับด้านตัวอักขระ:");
+        if (theStack.isEmpty()) {
+            System.out.println("สแต็กว่างเปล่า ไม่มีข้อมูลให้กลับด้าน");
+        } else {
+            while (!theStack.isEmpty()) {  //  while loop
+                System.out.print(theStack.pop());
+            }
+            System.out.println();
+        }
+    }
+ }
